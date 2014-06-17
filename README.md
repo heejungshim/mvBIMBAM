@@ -16,6 +16,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ## Binary executable file
 
 Binary executable file for Linux is in the `mvBIMBAM/bin/` directory (complied on 06/17/2014).
+
 A zip file of binary executable file, source code, and example input files for MAC is in `mvBIMBAM\forMAC` directory (tested on OS 10.6, but should also work under other 10.x)
 
 ## Installation
