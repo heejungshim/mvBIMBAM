@@ -29,7 +29,7 @@ Then, binary executable file will be created in the `mvBIMBAM/` directory.
 
 ## User manual 
 
-User manual is in the `mvBIMBAM/doc/` directory (last edited on 06/17/2014).
+User manual is in the `mvBIMBAM/doc/` directory.
 
 ## Bug reports
 
