@@ -1,6 +1,6 @@
 ## mvBIMBAM
 
-This repository contains mvBIMBAM, a software implementing a Bayesian approach for genetic association analysis of multiple related phenotypes. 
+This repository contains a software mvBIMBAM, a version of [BIMBAM](http://www.haplotype.org/bimbam.html) for multivariate association analysis, implementing a Bayesian approach for genetic association analysis of multiple related phenotypes.
 
 mvBIMBAM is a free software, you can redistribute it and/or modify it under
 the terms of the GNU General Public License (GPLv3+).
@@ -38,7 +38,7 @@ Report bugs as issues on this repository.
 ## How to cite mvBIMBAM
 
 1. M Stephens (2013). A Unified framework for association analysis with multiple related phenotypes. PLoS ONE 8(7): e65245.
-2. H. Shim et al (2014). A multivariate genome-wide association analysis of 10 LDL
+2. H Shim et al (2014). A multivariate genome-wide association analysis of 10 LDL
 subfractions, and their response to statin treatment, in 1868 Caucasians. Submitted.
 
 
