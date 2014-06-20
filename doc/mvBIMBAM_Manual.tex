@@ -1,0 +1,249 @@
+%\documentclass[a4paper]{article}
+\documentclass[11pt]{article}
+
+
+%% Packages.
+\usepackage{framed}
+\usepackage{color}
+\usepackage{amsmath,amssymb,amsfonts,epsfig}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{soul} % for highlighting
+\usepackage[sort&compress]{natbib}
+\usepackage{ifthen}
+\usepackage{xkeyval}
+\usepackage{xfor}
+\usepackage{amsgen}
+\usepackage{etoolbox}
+\usepackage{epstopdf}
+\usepackage{hyperref} % problem with toc
+\usepackage[toc,sort=use]{glossaries} % for list of symbols. Must be AFTER hyperref
+
+
+%\usepackage[sort&compress]{natbib}
+%\usepackage{chngcntr}
+
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm
+\textheight 21cm
+
+
+\bibliographystyle{plain}
+
+\date{\today}
+
+\renewcommand{\baselinestretch}{1.2}
+
+
+\newcommand{\vr}{{\textbf r}}
+\newcommand{\vw}{{\textbf w}}
+\newcommand{\vv}{{\textbf v}}
+\newcommand{\va}{{\textbf a}}
+\newcommand{\vc}{{\textbf c}}
+\newcommand{\vg}{{\textbf g}}
+\newcommand{\vt}{{\textbf t}}
+\newcommand{\vp}{{\textbf p}}
+\newcommand{\vx}{{\textbf x}}
+\newcommand{\vy}{{\textbf y}}
+\newcommand{\vs}{{\textbf s}}
+\newcommand{\vz}{{\textbf z}}
+
+
+%\newcommand{\sigest}{\ensuremath{\tilde{\sigma}}}
+\newcommand{\sigest}{{\tilde{\sigma}}}
+
+
+\newcommand{\bm}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\bx}{\textbf{x}}
+\newcommand{\by}{\textbf{y}}
+\newcommand{\bz}{\textbf{z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+\newcommand{\readlen}{\ensuremath{L}}
+
+
+\renewcommand{\Pr}{\mathsf{P}}
+\newcommand{\prob}[1]{\Pr\left(#1\right)}
+\newcommand{\given}{\mid}
+\newcommand{\me}{\mathrm{e}} % use for base of the natural logarithm
+\newcommand{\md}{\mathrm{d}} % use for base of the natural logarithm
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\mean}{\mathrm{E}}
+\def\logten{\log_{10}}
+\def\BFav{{\rm BF}_\text{av}}
+\def\BFuni{{\rm BF}_\text{uni}}
+\def\BFldl{{\rm BF}_\text{ldl}}
+\def\BF{\rm BF}
+\def\ABF{\rm ABF}
+\def\BFall{{\rm BF}_\text{all}}
+\def\I{I}
+\def\U{U}
+\def\D{D}
+\def\p{p}
+
+
+\newcommand{\Normal}{\mathcal{N}}
+
+
+\def\qed{\hfill \vrule height1.3ex width1.2ex depth-0.1ex}
+
+
+\glossarystyle{long3col} % listdotted set style of glossaries
+\renewcommand{\glossaryname}{List of Symbols}
+
+
+
+%\long\def\symbolfootnote[#1]#2{\begingroup%
+%\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+%\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+
+\begin{document}
+
+\title{mvBIMBAM}
+
+\maketitle
+
+
+\section{Preamble}
+
+The {\tt mvBIMBAM}, a version of {\tt BIMBAM} (\url{http://stephenslab.uchicago.edu/software.html}) \cite{Servin2007} for multivariate association analysis, implements a Bayesian approach for genetic association analysis of multiple related phenotypes. Note also that although this version of BIMBAM can also do imputation etc, we ask that you instead use the official released version for all this kind of work; this version is really for testing the multivariate phenotype option only. These instructions are just for how to run the multivariate analyses: you will need to consult the regular {\tt BIMBAM} instructions (\url{http://www.haplotype.org/download/bimbam-manual.pdf}) for input file format etc.
+
+\section{Brief Statistical Background}
+
+A multivariate phenotype analysis can be performed using the \verb+-mph+ option, as described below. Note that this option currently only allows single-SNP analyses (i.e. the SNPs in a genome-wide scan will be analyzed one at a time).
+
+The analysis is based on the multivariate regression model:
+\begin{equation} \label{Y.eqn}
+Y = \mu+ G B+ E
+\end{equation}
+where $Y (n \times d)$ is a matrix of $d$ phenotypes on each of $n$ individuals; $\mu (n \times 1)$ is an intercept vector; $G (n \times 1)$ is a vector of genotypes (usually coded 0, 1 and 2) measured on the same individuals; $B (1 \times d)$ is a vector of regression coefficients relating the phenotypes to the genotypes; and
+ $E (n \times d)$ is a matrix of error terms, whose rows we assume to be independent and identically distributed as $N_d(0,V)$ for some unknown covariance matrix $V (d \times d)$. 
+
+
+Please read \cite{Stephens2013} for details of the method. 
+In brief, the approach attempts to partition the response variables $Y$ into three groups -- denoted $\U$, $\D$ and $\I$ --  consisting of those variables that are Unaffected by $G$, those that are Directly affected by $G$, and those that are Indirectly affected by $G$ through the variables in $\D$.
+Here the terms ``direct" and ``indirect" are meant statistically and not molecularly. For example, we do not mean a ``direct" effect of $G$ on $Y_D$ to be interpreted as necessarily implying a direct molecular mechanism linking the two (although such a mechanism could be one possible explanation).
+
+More formally the idea is to consider the set of models $H_\gamma$, where the index $\gamma=(\U,\D,\I)$ runs through 
+partitions of the coordinates $\{1,\dots,d\}$.
+That is, $\U, \D$, and $\I$ are disjoint subsets of $\{1,\dots,d\}$, whose union is $\{1,\dots,d\}$. 
+Under model $H_\gamma$ we assume that $Y_\U$ is independent of $X$, and $Y_\I$ is conditionally independent of $X$ given $Y_\D$. This gives
+\begin{equation}
+{\p}_\gamma(Y | X) = {\p}_\gamma(Y_{\U}) {\p}_{\gamma}(Y_{\D} | Y_{\U}, X) {\p}_\gamma(Y_{\I} | Y_{\U},Y_{\D}).
+\end{equation}
+BIMBAM computes the Bayes Factor which measures the support for partition $\gamma$ compared wtih the global null that all the phenotypes are unassociated with $G$ (i.e. all the phenotypes are in $U$). It then summarizes both the overall evidence against the null, as well as the posterior probability that each coordinate of $Y$ is associated with $G$ (see discussion of output files below).
+
+\section{Performing an analysis}
+
+Because the method is based on an assumption of multivariate normality (within each genotype class),
+we recommend you consider  i) quantile normalizing each phenotype to the quantiles of a standard normal $N(0,1)$ distribution to provide some robustness to the normality assumption; ii) plot scatterplots of every pair of phenotypes to check the multivariate normal assumption doesn't look too bad.
+
+The software can be run two different ways, using either the {\tt -mph 1} or {\tt -mph 2} options.
+
+\subsection{A fast initial analysis}
+
+The first way, using {\tt -mph 1} is fast but less interesting: in effect it just does a simple multivariate test of the null hypothesis vs a general multivariate alternative. It can handle a moderately large
+number of phenotypes and be run on a whole-genome scale (we haven't tested the limits, but in principle this analysis should not be much more intensive than univariate analyses). It is intended
+primarily to be used, if necessary, as an initial filtering step, before running the more computationally-intensive {\tt -mph 2} analyses on those SNPs with the strongest signals. If you have only a handful of phenotypes then you may be able to run the {\tt -mph 2} analysis genome wide on all SNPs, and have no need for this first type of analysis.
+
+Here is an example of how to run this analysis on the example files
+\begin{verbatim}
+./bimbam -g example/test.geno.txt -p example/test.multi-pheno.txt 
+-o test.mph1 -f 3 -mph 1 -A 0.1 -A 0.2
+\end{verbatim} 
+The number of phenotypes is specified using the \verb+-f+ option.  
+In this example, the phenotype input file (\verb+test.multi-pheno.txt+) contains three columns each of which corresponds to each phenotype (note: currently BIMBAM does not allow missing phenotypes for the multivariate phenotype analysis). 
+Like the univariate phenotype analysis, the \verb+-A+ option is used to specify multiple values for $\sigma_a$ (see instructions for regular BIMBAM for details). The values 0.1 and 0.2 are not too bad as defaults, but you might want to check for robustness to a wider range of values (See also \cite{Stephens2009} for further discussion).
+
+\subsubsection{The output file}
+
+This command generates one output file (\verb+test.mph1.mph.BFs.txt+). 
+\begin{verbatim}
+<test.mph1.mph.BFs.txt>
+
+rs1 NA -0.00135 +0.18436 -0.11280 -0.08671
+rs13 NA +0.00210 +0.21745 -0.11803 -0.09825
+\end{verbatim}
+
+
+The first column is the SNP name. The second column is missing (NA), as it is filled in only in the second kind of analysis (see below).  The third column contains the $\logten$ of the Bayes Factor for testing for association between the multivariate phenotype and genotype. (Formally it is the BF for the partition $\gamma$ in which all variables are ``directly" affected by $G$ in the model described above; it is by only considering this one partition that this analysis is so fast). Large values of this BF indicate SNPs that have the strongest evidence for association with the multivariate phenotype. 
+Just as in a univariate analysis, this BF can be weighed against the Prior Odds to obtain the Posterior Odds for association. See \cite{Stephens2009} for more discussion. As a rough guide, in a genetic association study, a log$_{10}$ value of > 4 might be considered moderate evidence for association, and log$_{10}$ value of > 6 might be considered strong evidence.
+
+Remaining columns give the $\logten$ univariate BFs for each of the phenotypes considered in turn.
+
+\subsection{A more detailed multivariate analysis}
+
+The {\tt -mph 1} analysis is fast, because it does not consider all the different possible partitions of phenotypes into the different categories $U,D$ and $I$. As a result
+it does not allow you to ask interesting questions such as {\it which} of the phenotypes is associated with each SNP.  To do this more detailed analysis use the {\tt -mph 2} option, using for example
+
+\begin{verbatim}
+./bimbam -g example/test.geno.txt -p example/test.multi-pheno.txt 
+-o test.mph2 -f 3 -mph 2 -A 0.1 -A 0.2
+\end{verbatim} 
+
+\subsubsection{The output files}
+
+The {\tt -mph 2} analysis generates three output files.
+
+\begin{verbatim}
+<test.mph2.mph.BFs.txt>
+
+rs1 +0.02371 -0.00135 +0.18436 -0.11280 -0.08671
+rs13 +0.03043 +0.00210 +0.21745 -0.11803 -0.09825
+\end{verbatim}
+
+This file, which should be the first one you check to identify {\it which} SNPs have the strongest evidence for assocation, is just the same as for {\tt -mph 1}, except that the second column is filled in. This second
+column contains
+a $\logten$ Bayes Factor that tests for {\it any} association between SNP and the phenotypes, averaging over all possible partitions ($\gamma$) of the phenotypes into the different groups. Once again this BF should be weighed against the small prior odds of association, so you generally need a big value to claim strong evidence for association. In general this BF will be highly correlated with simpler BF computed in the third column; however it should be
+more effective at identifying cases where a SNP is associated with only a small number of the phenotypes (i.e. the BF in the second column will be larger than the BF in the third column for those SNPs that are associated with only a few of the phenotypes).
+
+\begin{verbatim}
+<test.mph2.mph.prob.txt>
+
+rs1  +0.24934 +0.63068 +0.38824 +0.42576 +0.38073 +0.43003
+rs13 +0.23739 +0.64702 +0.39210 +0.41642 +0.38571 +0.42168
+\end{verbatim}
+This second output file allows you to identify, in more detail {\it which} phenotypes are likely associated with each SNP, conditional on an overall association with at least one phenotype. Thus, you should only bother with this file for those SNPs that you believe are likely associated with the phenotypes (usually, and ideally, because they have a large BF in the first file, but in some cases possibly also because of external data connecting that SNP with these phenotypes).
+
+Specifically the file allows you to compute the marginal posterior probabilities for each phenotype being in each of the three groups, unaffected, directly affected and indirectly affected for each SNP (conditional on at least one phenotype being associated with the SNP).
+The first column contains the SNP name. 
+Then each phenotype is represented by two adjacent columns containing the marginal posterior probabilities for the phenotype being unaffected (the former) and directly affected (the latter). 
+The marginal posterior probability for the phenotype being indirectly affected can be calculated as 1 minus these two numbers.
+
+The most important issue is usually which phenotypes are associated with the SNP, either directly or indirectly, which can be assessed by summing the probabilities of these two options (or equivalently as  1 minus the probability of the phenotype being unaffected).
+For example, in the example above, SNP X has a marginal posterior probability of 1-y =z of being associated with the first phenotype.
+
+A quick warning: the prior we use is based on the idea that if a SNP is associated with one of the phenotypes, then it may well be associated with multiple phenotypes. That is, it is relatively permissive of associations with multiple phenotypes,
+and does not attempt to be ``skeptical" of additional associations. In this sense it is more suited to hypothesis generation of additional associations than of  hypothesis testing of additional associations. If you want to be more skeptical you will have to change this prior, which will require you to dig into the last output file, below.
+
+\begin{verbatim}
+<test.mph2.mph.txt>
+
+rs     100     200      010      110      210     ...
+prior +0.11111 0.00000 +0.11111 +0.05556 +0.02778 ...
+rs1   +0.20911 0.00000 -0.08590 +0.08647 -0.11344 ...
+rs13  +0.23082 0.00000 -0.10245 +0.10231 -0.11791 ...
+\end{verbatim}
+
+This last output file contains the $\log10$ BF computed for each partition. Most users will probably want to ignore this file, but it may be useful if you want to recompute things for the second output file using a different prior.
+The first row contains the partition identifier. 
+For example, the identifier \verb+210+ indicates the partition where the first and the second phenotypes are indirectly (2) and directly (1) affected, respectively, and the third phenotype is unaffected (0). 
+The second row contains the default prior on partitions used by BIMBAM. 
+From the third row, each row lists the SNP name and $\logten$ BF for each partition of the SNP.
+
+
+
+
+\bibliography{mvBIMBAMManual}
+
+
+\end{document} 
