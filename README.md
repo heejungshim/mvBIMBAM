@@ -2,6 +2,8 @@
 
 This repository contains a software mvBIMBAM, a version of [BIMBAM](http://www.haplotype.org/bimbam.html) for multivariate association analysis, implementing a Bayesian approach for genetic association analysis of multiple related phenotypes.
 
+We adapted the original source code in [BIMBAM](http://www.haplotype.org/bimbam.html) to deal with multiple related phenotypes.
+
 mvBIMBAM is a free software, you can redistribute it and/or modify it under
 the terms of the GNU General Public License (GPLv3+).
 
@@ -41,6 +43,7 @@ Report bugs as issues on this repository.
 2. H Shim et al (2014). A multivariate genome-wide association analysis of 10 LDL
 subfractions, and their response to statin treatment, in 1868 Caucasians. Submitted.
 
+## Authors
 
-
+[Heejung Shim](https://github.com/heejungshim) (University of Chicago)
 
