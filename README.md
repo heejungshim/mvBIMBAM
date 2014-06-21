@@ -43,7 +43,7 @@ Report bugs as issues on this repository.
 2. H Shim et al (2014). A multivariate genome-wide association analysis of 10 LDL
 subfractions, and their response to statin treatment, in 1868 Caucasians. Submitted.
 
-## Authors
+## Author
 
 [Heejung Shim](https://github.com/heejungshim) (University of Chicago)
 
