@@ -2,7 +2,7 @@
 
 This repository contains a software mvBIMBAM, a version of [BIMBAM](http://www.haplotype.org/bimbam.html) for multivariate association analysis, implementing a Bayesian approach for genetic association analysis of multiple related phenotypes.
 
-We adapted the original source code in [BIMBAM](http://www.haplotype.org/bimbam.html) to deal with multiple related phenotypes.
+We adapted source codes in [BIMBAM](http://www.haplotype.org/bimbam.html) to deal with multiple related phenotypes.
 
 mvBIMBAM is a free software, you can redistribute it and/or modify it under
 the terms of the GNU General Public License (GPLv3+).
@@ -35,7 +35,7 @@ User manual is in the `mvBIMBAM/doc/` directory.
 
 ## Bug reports
 
-Report bugs as issues on this repository.
+Report bugs as issues on this repository or email the [mailing list](https://groups.google.com/forum/?hl=en#!forum/bimbam-multivariate-beta-testing)
 
 ## How to cite mvBIMBAM
 
