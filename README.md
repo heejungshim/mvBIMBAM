@@ -39,9 +39,9 @@ Report bugs as issues on this repository or email the [mailing list](https://gro
 
 ## How to cite mvBIMBAM
 
-1. M Stephens (2013). [A Unified framework for association analysis with multiple related phenotypes](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0065245). PLoS ONE 8(7): e65245.
-2. H Shim et al (2014). A multivariate genome-wide association analysis of 10 LDL
-subfractions, and their response to statin treatment, in 1868 Caucasians. Submitted.
+1. H Shim et al (2014). [A multivariate genome-wide association analysis of 10 LDL
+subfractions, and their response to statin treatment, in 1868 Caucasians](http://biorxiv.org/content/early/2014/11/09/011270). Submitted. Available at bioRxiv.
+2. M Stephens (2013). [A Unified framework for association analysis with multiple related phenotypes](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0065245). PLoS ONE 8(7): e65245.
 
 ## Author
 
