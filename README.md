@@ -40,7 +40,7 @@ Report bugs as issues on this repository or email the [mailing list](https://gro
 ## How to cite mvBIMBAM
 
 1. H Shim et al (2014). [A multivariate genome-wide association analysis of 10 LDL
-subfractions, and their response to statin treatment, in 1868 Caucasians](http://biorxiv.org/content/early/2014/11/09/011270). Submitted. Available at bioRxiv.
+subfractions, and their response to statin treatment, in 1868 Caucasians](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120758). PLoS ONE 10(4): e0120758.
 2. M Stephens (2013). [A Unified framework for association analysis with multiple related phenotypes](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0065245). PLoS ONE 8(7): e65245.
 
 ## Author
