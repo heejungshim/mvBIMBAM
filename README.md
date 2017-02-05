@@ -43,6 +43,11 @@ Report bugs as issues on this repository or email the [mailing list](https://gro
 subfractions, and their response to statin treatment, in 1868 Caucasians](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120758). PLoS ONE 10(4): e0120758.
 2. M Stephens (2013). [A Unified framework for association analysis with multiple related phenotypes](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0065245). PLoS ONE 8(7): e65245.
 
+## Data in Shim et al  (2015)
+
+1. The CAP genotypes are in dbGAP : [link](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000481.v2.p1)
+2. 1) Normalized averages and differences of LDL subfractions, 2) genotype data for selected SNPs, and 3) summary statistics (effect size estimate and standard error) for each pair of a single SNP and a single phenotype are available [here](http://stephenslab.uchicago.edu/assets/data/Shim-et-al-2015/index.html)
+
 ## Author
 
 [Heejung Shim](https://github.com/heejungshim) (University of Chicago)
