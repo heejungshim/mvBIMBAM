@@ -46,7 +46,7 @@ subfractions, and their response to statin treatment, in 1868 Caucasians](http:/
 ## Data in Shim et al  (2015)
 
 * The CAP genotypes are in dbGAP : [link](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000481.v2.p1)
-* 1) Normalized averages and differences of LDL subfractions, 2) genotype data for selected SNPs, and 3) summary statistics (effect size estimate and standard error) for each pair of a single SNP and a single phenotype are available [here](http://stephenslab.uchicago.edu/assets/data/Shim-et-al-2015/index.html).
+* (1) Normalized averages and differences of LDL subfractions, (2) genotype data for selected SNPs, and (3) summary statistics (effect size estimate and standard error) for each pair of a single SNP and a single phenotype are available [here](http://stephenslab.uchicago.edu/assets/data/Shim-et-al-2015/index.html).
 
 ## Author
 
